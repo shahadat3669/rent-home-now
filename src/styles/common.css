@@ -1,0 +1,24 @@
+.max_width {
+  width: 100%;
+}
+
+.logo {
+  width: 30%;
+}
+
+.primary_bg {
+  background-color: rgb(57, 27, 187);
+}
+
+.back_bg {
+  background-color: rgb(252, 247, 241);
+}
+
+.lg_button {
+  width: 94%;
+  margin: 0 3%;
+}
+
+.top_width {
+  max-width: 480px;
+}
