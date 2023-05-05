@@ -1,29 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import SignUpForm from './pages/SignUpForm';
+import SignInForm from './pages/SignInForm';
+import RecoverPass from './pages/RecoverPass';
+import ChangePass from './pages/ChangePass';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <>
+
+    <Routes>
+      <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/signin" element={<SignInForm />} />
+      <Route path="/recover" element={<RecoverPass />} />
+      <Route path="/change" element={<ChangePass />} />
+    </Routes>
+
+  </>
+);
 
 export default App;
