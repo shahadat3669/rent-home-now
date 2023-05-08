@@ -14,6 +14,10 @@
   background-color: rgb(252, 247, 241);
 }
 
+.grey_bg {
+  background-color: #f8f9fa;
+}
+
 .lg_button {
   width: 94%;
   margin: 0 3%;
@@ -21,4 +25,44 @@
 
 .top_width {
   max-width: 480px;
+}
+
+.image {
+  width: 53%;
+  height: auto;
+  margin: 0 8.5% 10% 8.5%;
+}
+
+.table_width {
+  width: 27.5%;
+  margin-right: 2.3%;
+}
+
+#address_btn:hover {
+  background-color: rgb(57, 27, 187);
+}
+
+@media screen and (max-width: 768px) {
+  .table_width {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .image {
+    width: 100%;
+    margin: 0;
+  }
+
+  .container {
+    padding: 0 5%;
+    margin-bottom: 15%;
+  }
+
+  #reserve_btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 4%;
+  }
 }
