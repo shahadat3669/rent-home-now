@@ -4,6 +4,7 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import RecoverPass from './pages/RecoverPass';
 import ChangePass from './pages/ChangePass';
+import Details from './pages/Details';
 
 const App = () => (
   <>
@@ -13,6 +14,7 @@ const App = () => (
       <Route path="/signin" element={<SignInForm />} />
       <Route path="/recover" element={<RecoverPass />} />
       <Route path="/change" element={<ChangePass />} />
+      <Route path="/details" element={<Details />} />
     </Routes>
 
   </>
