@@ -1,5 +1,56 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
 .max_width {
-  width: 100%;
+  min-width: 100%;
 }
 
 .logo {
@@ -33,12 +84,20 @@
   margin: 0 8.5% 10% 8.5%;
 }
 
+.max_height {
+  max-height: 80vw;
+}
+
+.container {
+  margin: 5% 0 0 0;
+}
+
 .table_width {
   width: 27.5%;
   margin-right: 2.3%;
 }
 
-#address_btn:hover {
+.no_hover:hover {
   background-color: rgb(57, 27, 187);
 }
 
@@ -54,9 +113,13 @@
     margin: 0;
   }
 
+  .max_height {
+    max-height: 90vw;
+  }
+
   .container {
     padding: 0 5%;
-    margin-bottom: 15%;
+    margin: 0 0 15% 0;
   }
 
   #reserve_btn {
