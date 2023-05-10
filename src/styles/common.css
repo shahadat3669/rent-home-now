@@ -1,5 +1,56 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
 .max_width {
-  width: 100%;
+  min-width: 100%;
 }
 
 .logo {
@@ -14,6 +65,10 @@
   background-color: rgb(252, 247, 241);
 }
 
+.grey_bg {
+  background-color: #f8f9fa;
+}
+
 .lg_button {
   width: 94%;
   margin: 0 3%;
@@ -21,4 +76,56 @@
 
 .top_width {
   max-width: 480px;
+}
+
+.image {
+  width: 53%;
+  height: auto;
+  margin: 0 8.5% 10% 8.5%;
+}
+
+.max_height {
+  max-height: 80vw;
+}
+
+.container {
+  margin: 5% 0 0 0;
+}
+
+.table_width {
+  width: 27.5%;
+  margin-right: 2.3%;
+}
+
+.no_hover:hover {
+  background-color: rgb(57, 27, 187);
+}
+
+@media screen and (max-width: 768px) {
+  .table_width {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .image {
+    width: 100%;
+    margin: 0;
+  }
+
+  .max_height {
+    max-height: 90vw;
+  }
+
+  .container {
+    padding: 0 5%;
+    margin: 0 0 15% 0;
+  }
+
+  #reserve_btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 4%;
+  }
 }
