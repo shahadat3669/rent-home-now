@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaBed, FaBath } from 'react-icons/fa';
 import { MdMeetingRoom } from 'react-icons/md';
 import { FiArrowRightCircle } from 'react-icons/fi';
 import { getDetails, fullDetails } from '../redux/details/GetDetails';
+import '../styles/LoadingSpinner.css';
 
 const Details = () => {
   const params = useParams();
@@ -17,6 +18,15 @@ const Details = () => {
   }, [dispatch, id]);
 
   const filtered = useSelector(fullDetails);
+
+  const [userKey, setUserKey] = useState(null);
+
+  useEffect(() => {
+    const storedUserKey = localStorage.getItem('user');
+    if (storedUserKey) {
+      setUserKey(storedUserKey);
+    }
+  }, []);
 
   if (filtered.id >= 0) {
     const imageList = filtered.images.map((image) => (
@@ -131,17 +141,33 @@ const Details = () => {
             </tbody>
           </table>
           <br />
-          <a id="reserve_btn" className="btn primary_bg text-white lg_button no_hover d-flex justify-content-evenly" href="http://facebook.com">
-            Reserve
-            &nbsp;
-            <FiArrowRightCircle className="my-auto" />
-          </a>
+          {userKey ? (
+            <a id="reserve_btn" className="btn primary_bg text-white lg_button no_hover d-flex justify-content-evenly" href="http://facebook.com">
+              Reserve
+              &nbsp;
+              <FiArrowRightCircle className="my-auto" />
+            </a>
+          ) : (
+            <p>
+              You are not signed in.
+              If you want to reserve it. Please &nbsp;
+              <Link to="/signin">signed in</Link>
+              &nbsp;
+              or
+              &nbsp;
+              <Link to="/signup">signed up</Link>
+              &nbsp;
+              for create a new account
+            </p>
+          )}
         </div>
       </div>
     );
   }
   return (
-    <div>loading...</div>
+    <div className="loading-spinner-container">
+      <div className="loading-spinner" />
+    </div>
   );
 };
 

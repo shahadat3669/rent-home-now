@@ -33,7 +33,7 @@ const RecoverPass = () => {
         <img className="logo align-self-center" src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg" alt="" />
         <h2 className="text-center mt-5">Forgot your password?</h2>
         <p className="text-center mb-5">Enter your email to receive recovery instructions</p>
-        <div className="bg-white rounded-4">
+        <div className="bg-white rounded-4 auth_form">
           <form className="my-3" onSubmit={createUser}>
             <label htmlFor="email" className="max_width px-3 mt-4 mb-4">
               Email Address

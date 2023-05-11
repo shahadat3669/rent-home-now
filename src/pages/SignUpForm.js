@@ -1,51 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { signup } from '../redux/user/userAPI';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/common.css';
 
 const SignUp = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [value, setValue] = useState({
+  const [user, setUser] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    password_confirmation: '',
+    avatar: null,
   });
 
-  const [passwordMatchError, setPasswordMatchError] = useState(false);
-
-  const onChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.id]: e.target.value,
+  const handleChange = (event) => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
     });
   };
 
-  const createUser = (e) => {
-    e.preventDefault();
-    if (value.password === value.confirmPassword) {
-      dispatch(signup(value, navigate));
-      setPasswordMatchError(false);
-    } else {
-      setPasswordMatchError(true);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://127.0.0.1:4000/api/v1/auth/sign_up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user }),
+      });
+
+      if (response.ok) {
+        await response.json();
+        navigate('/signin');
+      } else {
+        const error = await response.json();
+        console.error(error);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
-
-  useEffect(() => {
-    document.title = 'Register';
-  }, []);
 
   return (
     <div className="max_width d-flex flex-column back_bg vh-100">
       <div className="max_width d-flex flex-column justify-content-center top_width align-self-center mt-5">
         <img className="logo align-self-center" src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg" alt="" />
         <h2 className="text-center my-5">Sign up to your account</h2>
-        <div className="bg-white rounded-4">
-          <form className="my-3" onSubmit={createUser}>
+        <div className="bg-white rounded-4 auth_form">
+          <form className="my-3" onSubmit={handleSubmit}>
             <label htmlFor="name" className="max_width px-3 mt-3">
               Full Name
               <br />
@@ -55,7 +61,7 @@ const SignUp = () => {
                 id="name"
                 name="name"
                 required
-                onChange={onChange}
+                onChange={handleChange}
               />
             </label>
             <br />
@@ -69,7 +75,21 @@ const SignUp = () => {
                 id="email"
                 name="email"
                 required
-                onChange={onChange}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+
+            <label htmlFor="avatar" className="max_width px-3 mt-4">
+              Avatar
+              <br />
+              <input
+                className="max_width form-control form-control-lg"
+                type="text"
+                id="avatar"
+                name="avatar"
+                required
+                onChange={handleChange}
               />
             </label>
             <br />
@@ -83,7 +103,7 @@ const SignUp = () => {
                 id="password"
                 name="password"
                 required
-                onChange={onChange}
+                onChange={handleChange}
               />
             </label>
             <br />
@@ -94,24 +114,20 @@ const SignUp = () => {
               <input
                 className="max_width form-control form-control-lg"
                 type="password"
-                id="confirmPassword"
-                name="confirmPassword"
+                id="password_confirmation"
+                name="password_confirmation"
                 required
-                onChange={onChange}
+                onChange={handleChange}
               />
             </label>
             <br />
 
-            {passwordMatchError && (
-              <p className="">Please verify your password</p>
-            )}
-
-            <button type="submit" value="add-tour" className="btn primary_bg text-white lg_button">
+            <button type="submit" value="add-tour" className="btn primary_bg text-white lg_button no_hover">
               Sign Up
             </button>
             <p className="text-center mt-4">
               Already registered?
-              <Link to="/login">Login</Link>
+              <Link to="/signin">Sign In</Link>
             </p>
           </form>
         </div>
