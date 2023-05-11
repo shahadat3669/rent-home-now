@@ -27,7 +27,7 @@ const Login = () => {
     dispatch(login(value));
     if (user.length > 0) {
       const cypherText = CriptoJS.AES.encrypt(
-        JSON.stringify(user[0].data),
+        JSON.stringify(user[0].data.data.accessToken),
         'user',
       ).toString();
       localStorage.setItem('user', cypherText);
@@ -38,7 +38,7 @@ const Login = () => {
   useEffect(() => {
     if (user.length > 0) {
       const cypherText = CriptoJS.AES.encrypt(
-        JSON.stringify(user[0].data),
+        JSON.stringify(user[0].data.data.accessToken),
         'user',
       ).toString();
       localStorage.setItem('user', cypherText);

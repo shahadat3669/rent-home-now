@@ -12,8 +12,7 @@ export const login = (data) => async (dispatch) => {
     body: JSON.stringify(data),
   });
   if (response.status === 200) {
-    let data = await response.json();
-    data = data.data.accessToken;
+    const data = await response.json();
     dispatch(addUSER({ data }));
   } else {
     alert('Something went wrong, please verify your data and try again');
