@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/common.css';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -37,11 +36,10 @@ const SignUp = () => {
         await response.json();
         navigate('/signin');
       } else {
-        const error = await response.json();
-        console.error(error);
+        alert('Something went wrong, please verify if you have an active account');
       }
     } catch (error) {
-      console.error(error);
+      alert('Something went wrong, please verify your data and try again');
     }
   };
 
