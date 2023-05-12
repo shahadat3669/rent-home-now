@@ -67,7 +67,7 @@ h6 {
 }
 
 .primary_bg {
-  background-color: var(--primary-color);;
+  background-color: var(--primary-color);
 }
 
 .back_bg {
@@ -107,7 +107,7 @@ h6 {
 }
 
 .no_hover:hover {
-  background-color: var(--primary-color);;
+  background-color: var(--primary-color);
 }
 
 @media screen and (max-width: 768px) {
