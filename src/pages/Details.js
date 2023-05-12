@@ -36,7 +36,7 @@ const Details = () => {
     ));
 
     return (
-      <div className="d-flex flex-md-row flex-column container max_width">
+      <div className="d-flex flex-md-row flex-column details_container max_width">
         <div className="bd-example image">
           <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
             <div className="carousel-inner">
