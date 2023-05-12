@@ -27,7 +27,7 @@ const Login = () => {
     dispatch(login(value));
     if (user.length > 0) {
       const cypherText = CriptoJS.AES.encrypt(
-        JSON.stringify(user[0]),
+        JSON.stringify(user[0].data.data.accessToken),
         'user',
       ).toString();
       localStorage.setItem('user', cypherText);
@@ -38,7 +38,7 @@ const Login = () => {
   useEffect(() => {
     if (user.length > 0) {
       const cypherText = CriptoJS.AES.encrypt(
-        JSON.stringify(user[0]),
+        JSON.stringify(user[0].data.data.accessToken),
         'user',
       ).toString();
       localStorage.setItem('user', cypherText);
@@ -55,7 +55,7 @@ const Login = () => {
       <div className="max_width d-flex flex-column justify-content-center top_width align-self-center mt-5">
         <img className="logo align-self-center" src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg" alt="" />
         <h2 className="text-center my-5">Sign in to your account</h2>
-        <div className="bg-white rounded-4">
+        <div className="bg-white rounded-4 auth_form">
           <form className="my-3" onSubmit={loginUser}>
             <label htmlFor="email" className="max_width px-3 mt-3">
               Email Address
@@ -83,7 +83,7 @@ const Login = () => {
             </label>
             <br />
 
-            <button type="submit" className="btn primary_bg text-white lg_button">Sign In</button>
+            <button type="submit" className="btn primary_bg text-white lg_button no_hover">Sign In</button>
 
             <p className="text-center mt-4">
               Not registered?

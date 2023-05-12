@@ -40,7 +40,7 @@ const ChangePass = () => {
       <div className="max_width d-flex flex-column justify-content-center top_width align-self-center mt-5">
         <img className="logo align-self-center" src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg" alt="" />
         <h2 className="text-center my-5">Set your new password?</h2>
-        <div className="bg-white rounded-4">
+        <div className="bg-white rounded-4 auth_form">
           <form className="my-3" onSubmit={createUser}>
             <label htmlFor="password" className="max_width px-3 mt-4">
               Password
