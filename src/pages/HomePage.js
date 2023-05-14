@@ -38,7 +38,6 @@ export default function HomePage() {
 
   return (
     <div className="property-home">
-      <div>Sidbar</div>
       {properties.data && (
         <div className="property-home-left-side">
           <div className="property-home-left-upper text-center">
@@ -56,6 +55,7 @@ export default function HomePage() {
               </button>
               <Swiper
                 className="swiper"
+                scrollbar
                 breakpoints={{
                   0: {
                     slidesPerView: 1,
@@ -66,7 +66,7 @@ export default function HomePage() {
                     spaceBetween: 100,
                   },
                   768: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     spaceBetween: 100,
                   },
                   1024: {

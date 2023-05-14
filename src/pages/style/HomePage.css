@@ -53,28 +53,34 @@
   border-radius: 50%;
 }
 
+.btnNext, .btnPrev {
+  display: none;
+}
+
 
 @media screen and (min-width: 768px) {
   .btnPrev {
+    display: inline;
     position: absolute;
     left: 0;
     top: 50%;
     background-color: green;
+    border: none;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
-    border-color: green;
     padding: 1rem 1.3rem;
     color: #fff;
   }
 
   .btnNext {
     position: absolute;
+    display: inline;
     right: 0;
     top: 50%;
     background-color: green;
-    border-color: green;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
+    border: none;
     padding: 1rem 1.3rem;
     color: #fff;
   }

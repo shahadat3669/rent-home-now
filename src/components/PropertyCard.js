@@ -6,6 +6,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaFacebook, FaFacebookF, FaTiktok, FaTwitter } from "react-icons/fa";
 import { FiTwitter } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function PropertyCard({ property }) {
   return (
@@ -17,11 +18,19 @@ export default function PropertyCard({ property }) {
           className="property-image"
         />
       </div>
-      <h3 className="property-name">{property.name}</h3>
-      <p className="property-description text-align-center">
+      <Link
+        to={`detail/${property.id}`}
+        className="property-name fs-3 fw-bold text-dark text-decoration-none"
+      >
+        {property.name}
+      </Link>
+      <span className="text-muted text-center p-3">
+        ............................
+      </span>
+      <p className="property-description text-center">
         {property.description}
       </p>
-      <div className="property-social">
+      <div className="property-social text-muted">
         <span className="property-social-icon">
           <FaFacebookF color="gray" />
         </span>
