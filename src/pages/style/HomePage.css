@@ -1,39 +1,81 @@
-.carousel-container {
+.property-home-left-side {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
-.property-card {
-  width: 400px;
-  height: 500px;
+.property-home-left-upper {
+  padding: 2rem;
 }
 
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  /* border-radius: 50%; */
-}
-
-.card-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.overlay-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.property-slider {
   width: 80%;
-  height: 80%;
+  position: relative;
+}
+.property-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.swiper {
+  padding: 5%;
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  align-items: center;
+  align-content: center;
+}
+
+.property-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 2%;
+}
+
+.property-image-back {
+  background-color: #f8f3f3;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
+  height: 210px;
+  width: 210px;
+}
+
+.property-social {
+  gap: 10px;
+  display: flex;
+}
+
+.property-social-icon {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+
+@media screen and (min-width: 768px) {
+  .btnPrev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-color: green;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-color: green;
+    padding: 1rem 1.3rem;
+    color: #fff;
+  }
+
+  .btnNext {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    background-color: green;
+    border-color: green;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    padding: 1rem 1.3rem;
+    color: #fff;
+  }
 }

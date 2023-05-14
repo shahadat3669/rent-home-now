@@ -1,14 +1,17 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable quotes */
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button, Card, Carousel, Col, Row,
-} from "react-bootstrap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import {
   fetchProperties,
   selectProperties,
 } from "../redux/properties/propertiesSlice";
 import "./style/HomePage.css";
+import "swiper/css";
+import PropertyCard from "../components/PropertyCard";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -17,56 +20,74 @@ export default function HomePage() {
   useEffect(() => {
     dispatch(fetchProperties());
   }, [dispatch]);
+  const swiperRef = useRef(null);
 
   if (!properties.data) {
     return null;
   }
 
-  const slides = properties.data.reduce((accumulator, property, index) => {
-    const slideIndex = Math.floor(index / 4);
-
-    if (!accumulator[slideIndex]) {
-      accumulator[slideIndex] = [];
-    }
-
-    accumulator[slideIndex].push(property);
-
-    return accumulator;
-  }, []);
+  const handleSwiper = (swiper) => {
+    swiperRef.current = swiper;
+  };
+  const slideToPrev = () => {
+    swiperRef.current.slidePrev();
+  };
+  const slideToNext = () => {
+    swiperRef.current.slideNext();
+  };
 
   return (
-    <div className="d-flex">
-      <div className="w-25">Sidbar</div>
-      <div className="carousel-container">
-        <Carousel prevLabel=">" nextLabel="<">
-          {slides.map((slide) => (
-            <Carousel.Item key={slide}>
-              <Row>
-                {slide.map((property) => (
-                  <Col key={property.id} md={3}>
-                    <Card className="property-card gap:2">
-                      <div className="image-container">
-                        <img
-                          src={property.images[0].source}
-                          alt={property.name}
-                          className="card-image"
-                        />
-                        <div className="overlay-circle" />
-                      </div>
-                      <Card.Body>
-                        <Card.Title>{property.name}</Card.Title>
-                        <Card.Text>{property.description}</Card.Text>
-                        {/* Render other property details */}
-                        <Button variant="primary">Read More</Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
+    <div className="property-home">
+      <div>Sidbar</div>
+      {properties.data && (
+        <div className="property-home-left-side">
+          <div className="property-home-left-upper text-center">
+            <h1 className="text-muted">Latest Model</h1>
+            <p>Please Select your preference</p>
+            <span className="text-muted">....................</span>
+          </div>
+          <div className="property-slider">
+            <div className="">
+              <button type="button" className="btnPrev" onClick={slideToPrev}>
+                <FaCaretLeft />
+              </button>
+              <button type="button" className="btnNext" onClick={slideToNext}>
+                <FaCaretRight />
+              </button>
+              <Swiper
+                className="swiper"
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    spaceBetween: 100,
+                  },
+                  480: {
+                    slidesPerView: 2,
+                    spaceBetween: 100,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 100,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 100,
+                  },
+                }}
+                grabCursor
+                pagination
+                onSwiper={handleSwiper}
+              >
+                {properties.data.map((property) => (
+                  <SwiperSlide key={property.id}>
+                    <PropertyCard property={property} />
+                  </SwiperSlide>
                 ))}
-              </Row>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
+              </Swiper>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
