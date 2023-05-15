@@ -66,8 +66,8 @@
   right: 0;
   top: 50%;
   background-color: #97bf0f;
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
   border: none;
   padding: 0.4rem 0.6rem;
   color: #fff;
@@ -80,9 +80,5 @@
 
   .btnNext {
     padding: 1rem 1.3rem;
-  }
-
-  .swiper {
-    width: 90%;
   }
 }
