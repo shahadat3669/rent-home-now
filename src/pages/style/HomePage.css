@@ -10,18 +10,19 @@
 }
 
 .property-slider {
-  width: 80%;
+  width: 100%;
   position: relative;
 }
+
 .property-card {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
 }
+
 .swiper {
-  padding: 5%;
+  padding: 4%;
   display: flex;
   justify-content: space-around;
   width: 80%;
@@ -30,16 +31,9 @@
 }
 
 .property-image {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 2%;
-}
-
-.property-image-back {
-  background-color: #f8f3f3;
-  border-radius: 50%;
-  height: 210px;
-  width: 210px;
 }
 
 .property-social {
@@ -53,35 +47,42 @@
   border-radius: 50%;
 }
 
-.btnNext, .btnPrev {
-  display: none;
+.btnPrev {
+  display: inline;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  background-color: #97bf0f;
+  border: none;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  padding: 0.4rem 0.6rem;
+  color: #fff;
 }
 
+.btnNext {
+  position: absolute;
+  display: inline;
+  right: 0;
+  top: 50%;
+  background-color: #97bf0f;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  color: #fff;
+}
 
 @media screen and (min-width: 768px) {
   .btnPrev {
-    display: inline;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    background-color: green;
-    border: none;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
     padding: 1rem 1.3rem;
-    color: #fff;
   }
 
   .btnNext {
-    position: absolute;
-    display: inline;
-    right: 0;
-    top: 50%;
-    background-color: green;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border: none;
     padding: 1rem 1.3rem;
-    color: #fff;
+  }
+
+  .swiper {
+    width: 90%;
   }
 }

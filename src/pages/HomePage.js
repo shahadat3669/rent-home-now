@@ -1,17 +1,14 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable quotes */
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FaCaretLeft, FaCaretRight } from 'react-icons/fa';
 import {
   fetchProperties,
   selectProperties,
-} from "../redux/properties/propertiesSlice";
-import "./style/HomePage.css";
-import "swiper/css";
-import PropertyCard from "../components/PropertyCard";
+} from '../redux/properties/propertiesSlice';
+import './style/HomePage.css';
+import 'swiper/css';
+import PropertyCard from '../components/PropertyCard';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -59,19 +56,19 @@ export default function HomePage() {
                 breakpoints={{
                   0: {
                     slidesPerView: 1,
-                    spaceBetween: 100,
+                    spaceBetween: 50,
                   },
                   480: {
                     slidesPerView: 2,
-                    spaceBetween: 100,
+                    spaceBetween: 50,
                   },
                   768: {
                     slidesPerView: 2,
-                    spaceBetween: 100,
+                    spaceBetween: 50,
                   },
                   1024: {
                     slidesPerView: 3,
-                    spaceBetween: 100,
+                    spaceBetween: 50,
                   },
                 }}
                 grabCursor

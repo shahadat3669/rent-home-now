@@ -1,12 +1,8 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable no-unused-vars */
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
-import React from "react";
-import PropTypes from "prop-types";
-import { FaFacebook, FaFacebookF, FaTiktok, FaTwitter } from "react-icons/fa";
-import { FiTwitter } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FaFacebookF, FaTiktok } from 'react-icons/fa';
+import { FiTwitter } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 export default function PropertyCard({ property }) {
   return (
@@ -65,7 +61,7 @@ PropertyCard.propTypes = {
       PropTypes.shape({
         id: PropTypes.number,
         source: PropTypes.string,
-      })
+      }),
     ),
   }).isRequired,
 };
