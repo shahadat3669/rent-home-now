@@ -10,6 +10,8 @@ import Details from './pages/Details';
 import DefaultLayout from './layouts/DefaultLayout';
 import Layout from './layouts/Layout';
 import HomePage from './pages/HomePage';
+import NewProperty from './pages/NewProperty';
+import MyProperty from './pages/MyProperty';
 
 const App = () => (
   <>
@@ -35,6 +37,8 @@ const App = () => (
       </Route>
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/my-property" element={<MyProperty />} />
+        <Route path="/new-property" element={<NewProperty />} />
         <Route
           path="/details/:id/"
           element={<Details />}

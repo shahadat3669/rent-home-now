@@ -8,11 +8,13 @@ export default function PropertyCard({ property }) {
   return (
     <div className="property-card">
       <div className="property-image-back">
-        <img
-          src={property.images[0].source}
-          alt={property.name}
-          className="property-image"
-        />
+        {property.images.length > 0 && (
+          <img
+            src={property.images[0].source}
+            alt={property.name}
+            className="property-image"
+          />
+        )}
       </div>
       <Link
         to={`detail/${property.id}`}
@@ -23,9 +25,7 @@ export default function PropertyCard({ property }) {
       <span className="text-muted text-center p-3">
         ............................
       </span>
-      <p className="property-description text-center">
-        {property.description}
-      </p>
+      <p className="property-description text-center">{property.description}</p>
       <div className="property-social text-muted">
         <span className="property-social-icon">
           <FaFacebookF color="gray" />

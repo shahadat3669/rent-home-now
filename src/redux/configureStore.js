@@ -4,6 +4,7 @@ import userReducer from './user/userSlice';
 import details from './details/GetDetails';
 // import properties from './properties/GetProperties';
 import propertiesReducer from './properties/propertiesSlice';
+import addressReducer from './address/addressSlice'; // Import the address reducer
 
 const store = configureStore(
   {
@@ -11,6 +12,7 @@ const store = configureStore(
       user: userReducer,
       details,
       properties: propertiesReducer,
+      address: addressReducer,
     },
   },
   applyMiddleware(thunk),

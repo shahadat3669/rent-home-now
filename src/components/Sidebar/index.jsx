@@ -51,6 +51,18 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
             Home
           </NavLink>
         </li>
+        <li className="nav-item sidebar__nav-item">
+          <NavLink
+            className={({ isActive }) => (isActive
+              ? 'nav-link sidebar__nav-link sidebar__nav-active'
+              : 'nav-link sidebar__nav-link')}
+            to="/my-property"
+            exact
+            onClick={hideSidebar}
+          >
+            My Property
+          </NavLink>
+        </li>
       </ul>
 
       <div className="sidebar__bottom d-flex flex-column">

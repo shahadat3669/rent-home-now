@@ -55,12 +55,14 @@ export default function MyProperty() {
         {properties.data.map((property) => (
           <div className="col card-deck" key={property.id}>
             <div className="card" style={{ width: "22rem" }}>
-              <img
-                src={property.images[0].source}
-                className="card-img-top"
-                alt="..."
-                style={{ height: "200px", objectFit: "cover" }}
-              />
+              {property.images.length > 0 && (
+                <img
+                  src={property.images[0].source}
+                  className="card-img-top"
+                  alt="..."
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+              )}
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{property.name}</h5>
                 <p className="card-text">{property.description}</p>

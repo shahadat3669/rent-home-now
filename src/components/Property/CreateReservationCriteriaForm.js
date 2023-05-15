@@ -1,17 +1,18 @@
+/* eslint-disable quotes */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { createReservationCriteria } from '../../redux/properties/reservationCriteriaSlice';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+import { createReservationCriteria } from "../../redux/properties/reservationCriteriaSlice";
 
-const CreateReservationCriteriaForm = ({ onComplete }) => {
+const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
   const [reservationCriteria, setReservationCriteria] = useState({
-    time_period: '',
+    time_period: "",
     others_fee: 0,
     min_time_period: 0,
     max_guest: 0,
     rate: 0,
-    property_id: 0,
+    property_id: propertyId,
   });
 
   const dispatch = useDispatch();
@@ -34,40 +35,96 @@ const CreateReservationCriteriaForm = ({ onComplete }) => {
   };
 
   return (
-    <div>
-      <h2>Create Reservation Criteria</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="time_period">Time Period:</label>
-          <input type="text" id="time_period" name="time_period" value={reservationCriteria.time_period} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="others_fee">Others Fee:</label>
-          <input type="number" id="others_fee" name="others_fee" value={reservationCriteria.others_fee} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="min_time_period">Minimum Time Period:</label>
-          <input type="number" id="min_time_period" name="min_time_period" value={reservationCriteria.min_time_period} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="max_guest">Maximum Guest:</label>
-          <input type="number" id="max_guest" name="max_guest" value={reservationCriteria.max_guest} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="rate">Rate:</label>
-          <input type="number" id="rate" name="rate" value={reservationCriteria.rate} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="property_id">Property ID:</label>
-          <input type="number" id="property_id" name="property_id" value={reservationCriteria.property_id} onChange={handleChange} />
-        </div>
-        <button type="submit">Create Reservation Criteria</button>
-      </form>
+    <div className="d-flex flex-column">
+      <h2 className="d-flex justify-content-center">Create Reservation Criteria</h2>
+      <div className="d-flex mx-auto">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="time_period" className="form-label">
+              Time Period
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="time_period"
+              name="time_period"
+              value={reservationCriteria.time_period}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="others_fee" className="form-label">
+              Others Fee
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              id="others_fee"
+              name="others_fee"
+              value={reservationCriteria.others_fee}
+              onChange={handleChange}
+              required
+              min={0}
+            />
+          </div>
+          <div className="row g-3">
+            <div className="col-md-6">
+              <label htmlFor="min_time_period" className="form-label">
+                Minimum Time Period
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="min_time_period"
+                name="min_time_period"
+                value={reservationCriteria.min_time_period}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="max_guest" className="form-label">
+                Maximum Guest
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="max_guest"
+                name="max_guest"
+                value={reservationCriteria.max_guest}
+                onChange={handleChange}
+                required
+                min={0}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="rate" className="form-label">
+              Rate
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              id="rate"
+              name="rate"
+              value={reservationCriteria.rate}
+              onChange={handleChange}
+              required
+              min={0}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Create Reservation Criteria
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 CreateReservationCriteriaForm.propTypes = {
   onComplete: PropTypes.func.isRequired,
+  propertyId: PropTypes.number.isRequired,
 };
 
 export default CreateReservationCriteriaForm;

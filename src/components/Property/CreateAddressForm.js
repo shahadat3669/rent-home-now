@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { createAddress } from "../../redux/address/addressSlice";
 
@@ -15,7 +15,6 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
     zip_code: "",
     property_id: propertyId,
   });
-  console.log(propertyId);
 
   const dispatch = useDispatch();
 
@@ -28,7 +27,7 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
     e.preventDefault();
     dispatch(createAddress(address))
       .then(() => {
-        onNext(propertyId);
+        onNext();
       })
       .catch((error) => {
         console.log(error);
@@ -37,74 +36,97 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
   };
 
   return (
-    <div>
-      <h2>Create Address</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="house_number">House Number:</label>
-          <input
-            type="text"
-            id="house_number"
-            name="house_number"
-            value={address.house_number}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="street">Street:</label>
-          <input
-            type="text"
-            id="street"
-            name="street"
-            value={address.street}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="city">City:</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={address.city}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="state">State:</label>
-          <input
-            type="text"
-            id="state"
-            name="state"
-            value={address.state}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="country">Country:</label>
-          <input
-            type="text"
-            id="country"
-            name="country"
-            value={address.country}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="zip_code">Zip Code:</label>
-          <input
-            type="text"
-            id="zip_code"
-            name="zip_code"
-            value={address.zip_code}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Add other address fields here... */}
-        <button type="submit">
-          Create Address
-        </button>
-      </form>
+    <div className="d-flex flex-column">
+      <h2 className="d-flex justify-content-center">Create Address</h2>
+      <div className="d-flex mx-auto">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="house_number" className="form-label">
+              House Number
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="house_number"
+              name="house_number"
+              value={address.house_number}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="street" className="form-label">
+              Street
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="street"
+              name="street"
+              value={address.street}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="row g-3">
+            <div className="col-md-6">
+              <label htmlFor="city" className="form-label">
+                City
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="city"
+                name="city"
+                value={address.city}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="state" className="form-label">
+                State
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="state"
+                name="state"
+                value={address.state}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="row g-3">
+            <div className="col-md-6">
+              <label htmlFor="country" className="form-label">
+                Country
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="country"
+                name="country"
+                value={address.country}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="zip_code" className="form-label">
+                ZIP Code
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="zip_code"
+                name="zip_code"
+                value={address.zip_code}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Create Address
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
