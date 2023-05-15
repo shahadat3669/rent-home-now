@@ -1,63 +1,81 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { login } from '../redux/user/userAPI';
-
-const CriptoJS = require('crypto-js');
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  getUser,
+  getUserError,
+  getUserStatus,
+  signInUser,
+} from '../redux/user/userSlice';
 
 const Login = () => {
-  const user = useSelector((store) => store.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [value, setValue] = useState({
-    email: '',
-    password: '',
-  });
-
-  const onChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.id]: e.target.value,
+  const toastId = React.useRef(null);
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('shahadat3669@gmail.com');
+  const [password, setPassword] = useState('password');
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
+  const userData = useSelector(getUser);
+  if (userError && !userStatus) {
+    toast.update(toastId.current, {
+      type: toast.TYPE.ERROR,
+      render: userError,
     });
-  };
+  }
+
+  if (userData?.name) {
+    toast.update(toastId.current, {
+      type: toast.TYPE.SUCCESS,
+      render: `Welcome ${userData.name}!`,
+    });
+    navigate('/');
+  }
 
   const loginUser = (e) => {
     e.preventDefault();
-    dispatch(login(value));
-    if (user.length > 0) {
-      const cypherText = CriptoJS.AES.encrypt(
-        JSON.stringify(user[0].data.data.accessToken),
-        'user',
-      ).toString();
-      localStorage.setItem('user', cypherText);
-      navigate('/');
-    }
+    dispatch(signInUser({ email, password }));
   };
 
-  useEffect(() => {
-    if (user.length > 0) {
-      const cypherText = CriptoJS.AES.encrypt(
-        JSON.stringify(user[0].data.data.accessToken),
-        'user',
-      ).toString();
-      localStorage.setItem('user', cypherText);
-      navigate('/');
-    }
-  }, [navigate, user]);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-  useEffect(() => {
-    document.title = 'Login';
-  }, []);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  if (userStatus) {
+    toastId.current = toast.info('Sending signup request!', {
+      position: 'top-right',
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: 'light',
+    });
+  }
 
   return (
     <div className="max_width d-flex flex-column back_bg vh-100">
       <div className="max_width d-flex flex-column justify-content-center top_width align-self-center mt-5">
-        <img className="logo align-self-center" src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg" alt="" />
+        <img
+          className="logo align-self-center"
+          src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg"
+          alt=""
+        />
         <h2 className="text-center my-5">Sign in to your account</h2>
         <div className="bg-white rounded-4 auth_form">
-          <form className="my-3" onSubmit={loginUser}>
-            <label htmlFor="email" className="max_width px-3 mt-3">
+          <form
+            className="my-3"
+            onSubmit={loginUser}
+          >
+            <label
+              htmlFor="email"
+              className="max_width px-3 mt-3"
+            >
               Email Address
               <br />
               <input
@@ -65,12 +83,16 @@ const Login = () => {
                 type="email"
                 id="email"
                 required
-                onChange={onChange}
+                value={email}
+                onChange={handleEmailChange}
               />
             </label>
             <br />
 
-            <label htmlFor="password" className="max_width px-3 mt-4 mb-4">
+            <label
+              htmlFor="password"
+              className="max_width px-3 mt-4 mb-4"
+            >
               Password
               <br />
               <input
@@ -78,12 +100,17 @@ const Login = () => {
                 type="password"
                 id="password"
                 required
-                onChange={onChange}
+                value={password}
+                onChange={handlePasswordChange}
               />
             </label>
             <br />
-
-            <button type="submit" className="btn primary_bg text-white lg_button no_hover">Sign In</button>
+            <button
+              type="submit"
+              className="btn primary_bg text-white lg_button no_hover"
+            >
+              Sign In
+            </button>
 
             <p className="text-center mt-4">
               Not registered?
