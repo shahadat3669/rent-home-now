@@ -45,11 +45,6 @@ export default function MyProperty() {
             New Reservation
           </button>
         </Link>
-        <Link to="/new-property">
-          <button type="button" className="btn btn-secondary p-2">
-            New Property
-          </button>
-        </Link>
       </div>
       <div className="card-deck row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 p-4">
         {properties.data.map((property) => (
