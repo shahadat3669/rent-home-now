@@ -129,7 +129,6 @@ const authSlice = createSlice({
         return newState;
       })
       .addCase(userReservations.fulfilled, (state, action) => {
-        console.log('first', action.payload);
         const newState = {
           ...state,
           loading: false,

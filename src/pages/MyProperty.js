@@ -1,23 +1,25 @@
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import {
   deleteProperty,
   getPropertiesByUser,
 } from "../redux/properties/propertiesSlice";
 import ModalComponent from "../components/ModalComponent";
+import { getUser } from '../redux/user/userSlice';
 
 export default function MyProperty() {
   const dispatch = useDispatch();
   const properties = useSelector((state) => state.properties);
+  const user = useSelector(getUser);
+
+  const filteredProperties = properties.data.filter((property) => property.user_id === user.id);
 
   useEffect(() => {
-    // Assume userId is obtained from the logged-in user
-    const userId = "123";
-
+    const userId = user.id;
     dispatch(getPropertiesByUser(userId));
   }, []);
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -29,11 +31,9 @@ export default function MyProperty() {
   const handleConfirmDelete = () => {
     dispatch(deleteProperty(selectedProperty.id))
       .then(() => {
-        // Property deleted successfully
         setSelectedProperty(null);
       })
       .catch((error) => {
-        // Handle error cases
         console.error(error);
       });
   };
@@ -52,12 +52,12 @@ export default function MyProperty() {
         </Link>
       </div>
       <div className="card-deck row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 p-4">
-        {properties.data.map((property) => (
-          <div className="col card-deck" key={property.id}>
+        {filteredProperties.map((property) => (
+          <div className="col card-deck mx-auto" key={property.id}>
             <div className="card" style={{ width: "22rem" }}>
               {property.images.length > 0 && (
                 <img
-                  src={property.images[0].source}
+                  src={property.images[0] ? property.images[0].source : []}
                   className="card-img-top"
                   alt="..."
                   style={{ height: "200px", objectFit: "cover" }}
