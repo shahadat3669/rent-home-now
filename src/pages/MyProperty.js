@@ -51,10 +51,10 @@ export default function MyProperty() {
           </button>
         </Link>
       </div>
-      <div className="card-deck row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 p-4">
+      <div className="card-deck d-flex flex-wrap">
         {filteredProperties.map((property) => (
           <div className="col card-deck mx-auto" key={property.id}>
-            <div className="card" style={{ width: "22rem" }}>
+            <div className="card mx-auto" style={{ width: "22rem" }}>
               {property.images.length > 0 && (
                 <img
                   src={property.images[0] ? property.images[0].source : []}
