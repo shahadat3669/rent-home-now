@@ -50,6 +50,16 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
           >
             Home
           </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive
+              ? 'nav-link sidebar__nav-link sidebar__nav-active'
+              : 'nav-link sidebar__nav-link')}
+            to="/my-reservations"
+            exact
+            onClick={hideSidebar}
+          >
+            My reservations
+          </NavLink>
         </li>
         <li className="nav-item sidebar__nav-item">
           <NavLink
@@ -60,7 +70,7 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
             exact
             onClick={hideSidebar}
           >
-            My Property
+            My Properties
           </NavLink>
         </li>
       </ul>
