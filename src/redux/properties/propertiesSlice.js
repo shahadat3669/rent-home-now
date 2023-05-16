@@ -1,5 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+export const updateProperty = createAsyncThunk(
+  'rent-home-now/UPDATE_PROPERTY',
+  async (propertyData) => {
+    const response = await fetch(`http://127.0.0.1:4000/api/v1/properties/${propertyData.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(propertyData),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  },
+);
+
 export const createProperty = createAsyncThunk(
   'rent-home-now/CREATE_PROPERTY',
   async (propertyData) => {
@@ -136,6 +154,23 @@ const propertiesSlice = createSlice({
         categories: action.payload,
       }))
       .addCase(fetchCategories.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.error.message,
+      }))
+      .addCase(updateProperty.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
+      .addCase(updateProperty.fulfilled, (state, action) => ({
+        ...state,
+        loading: false,
+        data: state.data.map(
+          (property) => (property.id === action.payload.id ? action.payload : property),
+        ),
+      }))
+      .addCase(updateProperty.rejected, (state, action) => ({
         ...state,
         loading: false,
         error: action.error.message,

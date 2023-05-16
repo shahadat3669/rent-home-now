@@ -25,33 +25,38 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createReservationCriteria(reservationCriteria))
-      .then(() => {
+      .then((resp) => {
+        console.log(resp.status);
         onComplete();
       })
       .catch((error) => {
-        console.log(error);
-        // Handle error if needed
+        alert("error", error);
       });
   };
 
   return (
     <div className="d-flex flex-column">
-      <h2 className="d-flex justify-content-center">Create Reservation Criteria</h2>
+      <h2 className="d-flex justify-content-center">
+        Create Reservation Criteria
+      </h2>
       <div className="d-flex mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="time_period" className="form-label">
-              Time Period
+            <label htmlFor="category_id" className="form-label">
+              Category
             </label>
-            <input
-              type="text"
-              className="form-control"
+            <select
+              className="form-select"
               id="time_period"
               name="time_period"
               value={reservationCriteria.time_period}
               onChange={handleChange}
-              required
-            />
+            >
+              <option value="">Select a Time Period</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
           </div>
           <div className="mb-3">
             <label htmlFor="others_fee" className="form-label">

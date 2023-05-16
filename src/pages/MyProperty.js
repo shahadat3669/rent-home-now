@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import {
   deleteProperty,
   getPropertiesByUser,
+  updateProperty,
 } from "../redux/properties/propertiesSlice";
 import ModalComponent from "../components/ModalComponent";
 
@@ -37,6 +38,8 @@ export default function MyProperty() {
         console.error(error);
       });
   };
+  const [showEditModal, setShowEditModal] = useState(false);
+
   return (
     <div className="d-flex flex-column border">
       <div className="d-flex py-2 mx-2 gap-3">
@@ -61,10 +64,35 @@ export default function MyProperty() {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{property.name}</h5>
                 <p className="card-text">{property.description}</p>
+                <div className="d-flex justify-content-between">
+                  <p>
+                    Rate: $
+                    {property.reservation_criteria.rate}
+                  </p>
+                  <p>
+                    Others Fee: $
+                    {property.reservation_criteria.others_fee}
+                  </p>
+                </div>
+                <span>Address</span>
+                {property.address && (
+                <p className="d-flex gap-1">
+                  <span>
+                    {property.address.zip_code}
+                    ,
+                  </span>
+                  <span>
+                    {property.address.street}
+                    ,
+                  </span>
+                  <span>{property.address.state}</span>
+                </p>
+                )}
                 <div className="d-flex gap-3">
                   <button
                     type="button"
                     className="btn btn-primary rounded-circle p-2"
+                    onClick={() => setShowEditModal(true)}
                   >
                     <FiEdit />
                   </button>

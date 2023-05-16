@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -11,6 +13,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const categories = useSelector((state) => state.properties.categories);
   const loading = useSelector((state) => state.properties.loading);
   const error = useSelector((state) => state.properties.error);
+  const [errors, setErrors] = useState({});
 
   const [property, setProperty] = useState({
     name: '',
@@ -32,19 +35,76 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProperty((prevState) => ({ ...prevState, [name]: value }));
+    setErrors((prevState) => ({ ...prevState, [name]: null }));
   };
+  const isValidUrl = (url) => {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlPattern.test(url);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProperty(property))
-      .then(() => {
-        onNext();
-        setPropertyId(2);
-      })
-      .catch((error) => {
-        console.log(error);
+    const imageErrors = {};
+    property.images.forEach((image, index) => {
+      if (!isValidUrl(image)) {
+        imageErrors[`image_${index}`] = 'Invalid URL';
+      }
+    });
+
+    if (property.images.length === 0) {
+      imageErrors.images = 'Please add at least one image';
+    }
+
+    if (Object.keys(imageErrors).length > 0) {
+      setErrors((prevState) => ({ ...prevState, ...imageErrors }));
+    } else {
+      dispatch(createProperty(property))
+        .then((response) => {
+          const { payload } = response;
+          onNext();
+          setPropertyId(payload.id);
+        })
+        .catch((error) => {
+          console.log(error);
         // Handle error if needed
-      });
+        });
+    }
   };
+  const handleImageChange = (e, index) => {
+    const { value } = e.target;
+
+    // Validate image link
+    const isValid = isValidUrl(value);
+
+    setProperty((prevState) => {
+      const updatedImages = [...prevState.images];
+      updatedImages[index] = value;
+      return { ...prevState, images: updatedImages };
+    });
+
+    setErrors((prevState) => {
+      const updatedErrors = { ...prevState };
+      updatedErrors[`image_${index}`] = isValid ? null : 'Invalid URL';
+      return updatedErrors;
+    });
+  };
+
+  const handleAddImage = () => {
+    setProperty((prevState) => ({
+      ...prevState,
+      images: [...prevState.images, ''],
+    }));
+  };
+
+  const handleRemoveImage = (index) => {
+    setProperty((prevState) => {
+      const updatedImages = [...prevState.images];
+      updatedImages.splice(index, 1);
+      return { ...prevState, images: updatedImages };
+    });
+  };
+  // Check if there are any errors
+  const hasErrors = Object.values(errors).some((error) => error !== null);
 
   return (
     <div className="d-flex flex-column">
@@ -155,10 +215,54 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
               ))}
             </select>
           </div>
-          <button type="submit" className="btn btn-primary" disabled={loading}>
+          {error && <div className="text-danger mt-2">{error}</div>}
+          <div className="mb-3">
+            <label className="form-label m-1">Images</label>
+            {property.images.map((image, index) => {
+              const key = `image_${index}`; // Assign a fixed unique key for each input element
+
+              return (
+                <div key={key} className="input-group mb-2">
+                  <input
+                    type="text"
+                    className={`form-control ${errors[key] && 'is-invalid'}`}
+                    placeholder="Image Link"
+                    value={image}
+                    onChange={(e) => handleImageChange(e, index)}
+                  />
+                  {errors[key] && (
+                    <div className="invalid-feedback">{errors[key]}</div>
+                  )}
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-danger"
+                    onClick={() => handleRemoveImage(index)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              );
+            })}
+
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-primary"
+              onClick={handleAddImage}
+            >
+              Add Image
+            </button>
+          </div>
+          {Object.keys(errors).length > 0 && hasErrors && (
+          <div className="alert alert-danger" role="alert">
+            {Object.values(errors).map((error) => (
+              <p key={uuidv4()}>{error}</p>
+            ))}
+          </div>
+          )}
+
+          <button type="submit" className="btn btn-primary">
             {loading ? 'Creating...' : 'Create'}
           </button>
-          {error && <div className="text-danger mt-2">{error}</div>}
         </form>
       </div>
     </div>
