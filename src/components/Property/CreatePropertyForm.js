@@ -138,38 +138,34 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
       <div className="d-flex mx-auto">
         <form onSubmit={handleSubmit} className="fluid-container">
           <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Name
-              <input
-                placeholder=""
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                value={property.name}
-                onChange={handleChange}
-                required
-              />
-            </label>
+            <input
+              placeholder="Name"
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={property.name}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="mb-3">
-            <label htmlFor="description" className="form-label">
-              <textarea
-                placeholder="Description"
-                className="form-control"
-                id="description"
-                name="description"
-                value={property.description}
-                onChange={handleChange}
-                required
-              />
-            </label>
+            <textarea
+              placeholder="Description"
+              className="form-control"
+              id="description"
+              name="description"
+              value={property.description}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="row g-3">
             <div className="col-md-4">
               <label htmlFor="no_bedrooms" className="form-label">
                 No. of Bedrooms
                 <input
+                  placeholder="No. of Bedrooms"
                   type="number"
                   className="form-control"
                   id="no_bedrooms"
@@ -184,6 +180,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
               <label htmlFor="no_baths" className="form-label">
                 No. of Baths
                 <input
+                  placeholder="No. of Baths"
                   type="number"
                   className="form-control"
                   id="no_baths"
@@ -198,6 +195,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
               <label htmlFor="no_beds" className="form-label">
                 No. of Beds
                 <input
+                  placeholder="No. of Beds"
                   type="number"
                   className="form-control"
                   id="no_beds"
@@ -224,23 +222,20 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
             </label>
           </div>
           <div className="mb-3">
-            <label htmlFor="category_id" className="form-label">
-              Category
-              <select
-                className="form-select"
-                id="category_id"
-                name="category_id"
-                value={property.id}
-                onChange={handleChange}
-              >
-                <option value="">Select a category</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <select
+              className="form-select"
+              id="category_id"
+              name="category_id"
+              value={property.id}
+              onChange={handleChange}
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
           </div>
           {error && <div className="text-danger mt-2">{error}</div>}
           <div className="mb-3">
