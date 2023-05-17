@@ -13,8 +13,7 @@ export const getDetails = createAsyncThunk(
 
 const detailsSlice = createSlice({
   name: 'details',
-  initialState: {
-  },
+  initialState: {},
 
   extraReducers: {
     [getDetails.fulfilled]: (state, action) => {
@@ -28,4 +27,6 @@ const detailsSlice = createSlice({
 });
 
 export const fullDetails = (state) => state.details;
+export const getReservationCriteria = (state) => state.details.reservation_criteria;
+export const getPropertyReservations = (state) => state.details.reservation;
 export default detailsSlice.reducer;

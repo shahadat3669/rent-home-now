@@ -146,4 +146,8 @@ const propertiesSlice = createSlice({
 export const fullDetails = (state) => state.details;
 export default propertiesSlice.reducer;
 export const selectProperties = (state) => state.properties;
+export const selectPropertiesWithNamesAndIds = (state) => state.properties.data.map((property) => ({
+  id: property.id,
+  name: property.name,
+}));
 export const selectCategories = (state) => state.properties.categories;

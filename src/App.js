@@ -11,6 +11,7 @@ import Details from './pages/Details';
 import DefaultLayout from './layouts/DefaultLayout';
 import Layout from './layouts/Layout';
 import HomePage from './pages/HomePage';
+import AddReservation from './pages/AddReservation';
 import NewProperty from './pages/NewProperty';
 import MyProperty from './pages/MyProperty';
 import MyReservations from './pages/MyReservations';
@@ -57,6 +58,7 @@ const App = () => {
             path="/details/:id/"
             element={<Details />}
           />
+          <Route path="reservations/new" element={<AddReservation />} />
         </Route>
       </Routes>
     </>
