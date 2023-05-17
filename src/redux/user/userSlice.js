@@ -34,6 +34,35 @@ export const signInUser = createAsyncThunk(
   },
 );
 
+export const userReservations = createAsyncThunk(
+  'auth/userReservations',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await fetch(
+        'http://localhost:4000/api/v1/auth/me',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: userData,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        return thunkAPI.rejectWithValue(
+          errorData.error || 'Something went wrong',
+        );
+      }
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const checkLocalStorage = () => {
   const accessTokenLocal = localStorage.getItem('accessToken');
   const userJson = localStorage.getItem('user');
@@ -49,6 +78,8 @@ const authSlice = createSlice({
   initialState: {
     user: userFromStorage,
     accessToken: accessTokenFromStorage,
+    myReservation: [],
+    myProperties: [],
     loading: false,
     error: null,
   },
@@ -89,12 +120,38 @@ const authSlice = createSlice({
           error: action.payload,
         };
         return newState;
+      })
+      .addCase(userReservations.pending, (state) => {
+        const newState = {
+          ...state,
+          loading: true,
+        };
+        return newState;
+      })
+      .addCase(userReservations.fulfilled, (state, action) => {
+        const newState = {
+          ...state,
+          loading: false,
+          myReservation: action.payload.data.myReservation,
+          myProperties: action.payload.data.myProperties,
+        };
+        return newState;
+      })
+      .addCase(userReservations.rejected, (state, action) => {
+        const newState = {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+        return newState;
       });
   },
 });
 
 export const getUser = (state) => state.user.user;
 export const getAccessToken = (state) => state.user.accessToken;
+export const getUserProperties = (state) => state.user.myProperties;
+export const getUserReservations = (state) => state.user.myReservation;
 export const getUserStatus = (state) => state.user.loading;
 export const getUserError = (state) => state.user.error;
 export const { logout } = authSlice.actions;
