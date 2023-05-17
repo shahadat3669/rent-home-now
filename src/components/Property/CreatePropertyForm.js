@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
@@ -140,110 +139,111 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name
+              <input
+                placeholder=""
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={property.name}
+                onChange={handleChange}
+                required
+              />
             </label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={property.name}
-              onChange={handleChange}
-              required
-            />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">
-              Description
+              <textarea
+                placeholder="Description"
+                className="form-control"
+                id="description"
+                name="description"
+                value={property.description}
+                onChange={handleChange}
+                required
+              />
             </label>
-            <textarea
-              className="form-control"
-              id="description"
-              name="description"
-              value={property.description}
-              onChange={handleChange}
-              required
-            />
           </div>
           <div className="row g-3">
             <div className="col-md-4">
               <label htmlFor="no_bedrooms" className="form-label">
                 No. of Bedrooms
+                <input
+                  type="number"
+                  className="form-control"
+                  id="no_bedrooms"
+                  name="no_bedrooms"
+                  value={property.no_bedrooms}
+                  onChange={handleChange}
+                  min={1}
+                />
               </label>
-              <input
-                type="number"
-                className="form-control"
-                id="no_bedrooms"
-                name="no_bedrooms"
-                value={property.no_bedrooms}
-                onChange={handleChange}
-                min={1}
-              />
             </div>
             <div className="col-md-4">
               <label htmlFor="no_baths" className="form-label">
                 No. of Baths
+                <input
+                  type="number"
+                  className="form-control"
+                  id="no_baths"
+                  name="no_baths"
+                  value={property.no_baths}
+                  onChange={handleChange}
+                  min={1}
+                />
               </label>
-              <input
-                type="number"
-                className="form-control"
-                id="no_baths"
-                name="no_baths"
-                value={property.no_baths}
-                onChange={handleChange}
-                min={1}
-              />
             </div>
             <div className="col-md-4">
               <label htmlFor="no_beds" className="form-label">
                 No. of Beds
+                <input
+                  type="number"
+                  className="form-control"
+                  id="no_beds"
+                  name="no_beds"
+                  value={property.no_beds}
+                  onChange={handleChange}
+                  min={1}
+                />
               </label>
-              <input
-                type="number"
-                className="form-control"
-                id="no_beds"
-                name="no_beds"
-                value={property.no_beds}
-                onChange={handleChange}
-                min={1}
-              />
             </div>
           </div>
           <div className="mb-3">
             <label htmlFor="area" className="form-label">
               Area (in sq. ft.)
+              <input
+                type="number"
+                className="form-control"
+                id="area"
+                name="area"
+                value={property.area}
+                onChange={handleChange}
+                min={1}
+              />
             </label>
-            <input
-              type="number"
-              className="form-control"
-              id="area"
-              name="area"
-              value={property.area}
-              onChange={handleChange}
-              min={1}
-            />
           </div>
           <div className="mb-3">
             <label htmlFor="category_id" className="form-label">
               Category
+              <select
+                className="form-select"
+                id="category_id"
+                name="category_id"
+                value={property.id}
+                onChange={handleChange}
+              >
+                <option value="">Select a category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </label>
-            <select
-              className="form-select"
-              id="category_id"
-              name="category_id"
-              value={property.id}
-              onChange={handleChange}
-            >
-              <option value="">Select a category</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
           </div>
           {error && <div className="text-danger mt-2">{error}</div>}
           <div className="mb-3">
-            <label className="form-label m-1">Images</label>
+            <span>Images</span>
             {property.images.map((image, index) => {
               const key = `image_${index}`; // Assign a fixed unique key for each input element
 

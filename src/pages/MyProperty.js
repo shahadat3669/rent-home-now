@@ -1,15 +1,13 @@
-/* eslint-disable quotes */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { Button, Modal } from 'react-bootstrap';
 import {
   deleteProperty,
   getPropertiesByUser,
-  updateProperty,
-} from "../redux/properties/propertiesSlice";
-import ModalComponent from "../components/ModalComponent";
+} from '../redux/properties/propertiesSlice';
+import ModalComponent from '../components/ModalComponent';
 
 export default function MyProperty() {
   const dispatch = useDispatch();
@@ -17,7 +15,7 @@ export default function MyProperty() {
 
   useEffect(() => {
     // Assume userId is obtained from the logged-in user
-    const userId = "123";
+    const userId = '123';
 
     dispatch(getPropertiesByUser(userId));
   }, []);
@@ -52,13 +50,13 @@ export default function MyProperty() {
       <div className="card-deck row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 p-4">
         {properties.data.map((property) => (
           <div className="col card-deck" key={property.id}>
-            <div className="card" style={{ width: "22rem" }}>
+            <div className="card" style={{ width: '22rem' }}>
               {property.images.length > 0 && (
                 <img
                   src={property.images[0].source}
                   className="card-img-top"
                   alt="..."
-                  style={{ height: "200px", objectFit: "cover" }}
+                  style={{ height: '200px', objectFit: 'cover' }}
                 />
               )}
               <div className="card-body d-flex flex-column">
@@ -76,17 +74,17 @@ export default function MyProperty() {
                 </div>
                 <span>Address</span>
                 {property.address && (
-                <p className="d-flex gap-1">
-                  <span>
-                    {property.address.zip_code}
-                    ,
-                  </span>
-                  <span>
-                    {property.address.street}
-                    ,
-                  </span>
-                  <span>{property.address.state}</span>
-                </p>
+                  <p className="d-flex gap-1">
+                    <span>
+                      {property.address.zip_code}
+                      ,
+                    </span>
+                    <span>
+                      {property.address.street}
+                      ,
+                    </span>
+                    <span>{property.address.state}</span>
+                  </p>
                 )}
                 <div className="d-flex gap-3">
                   <button
@@ -119,6 +117,19 @@ export default function MyProperty() {
               onClose={() => setSelectedProperty(null)}
             />
           </div>
+        )}
+        {showEditModal && (
+          <Modal show onHide={() => setShowEditModal(false)} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Update Property</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Coming Soon....</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary">Update</Button>
+            </Modal.Footer>
+          </Modal>
         )}
       </div>
     </div>

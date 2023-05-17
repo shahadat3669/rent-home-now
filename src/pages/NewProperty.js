@@ -8,7 +8,7 @@ const NewProperty = () => {
   const [propertyId, setPropertyId] = useState(null);
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
-  const FormTitles = ['Property', 'Address', 'Reservation Criteria'];
+  // const FormTitles = ['Property', 'Address', 'Reservation Criteria'];
 
   const handleNext = () => {
     setStep(step + 1);
@@ -39,28 +39,6 @@ const NewProperty = () => {
             width: `${(step + 1) * 33.3}%`,
           }}
         />
-      </div>
-      <div className="fit_content mx-auto">
-        <button
-          className="btn btn-warning me-2"
-          type="button"
-          onClick={() => {
-            setStep((currentPage) => currentPage - 1);
-          }}
-          disabled={step === 0}
-        >
-          Prev
-        </button>
-        <button
-          className="btn btn-warning ms-2"
-          type="button"
-          onClick={() => {
-            setStep((currentPage) => currentPage + 1);
-          }}
-          disabled={step === FormTitles.length - 1}
-        >
-          Next
-        </button>
       </div>
     </div>
   );
