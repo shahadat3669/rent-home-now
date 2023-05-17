@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,6 +15,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const loading = useSelector((state) => state.properties.loading);
   const error = useSelector((state) => state.properties.error);
   const [errors, setErrors] = useState({});
+  const toastId = React.useRef(null);
 
   const [property, setProperty] = useState({
     name: '',
@@ -29,6 +31,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('Dispatching fetchCategories action');
     dispatch(fetchCategories());
   }, [dispatch]);
 
@@ -63,10 +66,33 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
           const { payload } = response;
           onNext();
           setPropertyId(payload.id);
+          if (!loading && !error) {
+            toastId.current = toast.success('Create property Successfully', {
+              position: 'top-right',
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'light',
+            });
+          }
         })
         .catch((error) => {
-          console.log(error);
-        // Handle error if needed
+          if (error) {
+            toastId.current = toast.error(
+              'Create Property is not Successfully',
+              {
+                position: 'top-right',
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                theme: 'light',
+              },
+            );
+          }
         });
     }
   };
@@ -253,11 +279,11 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
             </button>
           </div>
           {Object.keys(errors).length > 0 && hasErrors && (
-          <div className="alert alert-danger" role="alert">
-            {Object.values(errors).map((error) => (
-              <p key={uuidv4()}>{error}</p>
-            ))}
-          </div>
+            <div className="alert alert-danger" role="alert">
+              {Object.values(errors).map((error) => (
+                <p key={uuidv4()}>{error}</p>
+              ))}
+            </div>
           )}
 
           <button type="submit" className="btn btn-primary">

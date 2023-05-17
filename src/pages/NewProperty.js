@@ -15,7 +15,7 @@ const NewProperty = () => {
   };
 
   const onComplete = () => {
-    navigate('/');
+    navigate(`/details/${propertyId}`);
   };
 
   return (

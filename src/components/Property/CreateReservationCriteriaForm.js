@@ -1,8 +1,9 @@
 /* eslint-disable quotes */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { createReservationCriteria } from "../../redux/properties/reservationCriteriaSlice";
 
 const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
@@ -15,6 +16,10 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
     property_id: propertyId,
   });
 
+  const toastId = React.useRef(null);
+  const loading = useSelector((state) => state.properties.loading);
+  const error = useSelector((state) => state.properties.error);
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -25,12 +30,49 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createReservationCriteria(reservationCriteria))
-      .then((resp) => {
-        console.log(resp.status);
+      .then(() => {
         onComplete();
+        if (!loading && !error) {
+          toastId.current = toast.success(
+            "Create reservation criteria for property Successfully",
+            {
+              position: "top-right",
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: "light",
+            },
+          );
+        }
+        if (loading) {
+          toastId.current = toast.success("creating ...", {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "light",
+          });
+        }
       })
       .catch((error) => {
-        alert("error", error);
+        if (error) {
+          toastId.current = toast.error(
+            "Creating reservation criteria is not Successfully",
+            {
+              position: "top-right",
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: "light",
+            },
+          );
+        }
       });
   };
 

@@ -45,7 +45,7 @@ export default function MyProperty() {
       <div className="d-flex py-2 mx-2 gap-3">
         <Link to="/new-property">
           <button type="button" className="btn btn-primary p-2">
-            New Reservation
+            New Property
           </button>
         </Link>
       </div>

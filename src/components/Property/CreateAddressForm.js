@@ -2,7 +2,8 @@
 /* eslint-disable quotes */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { createAddress } from "../../redux/address/addressSlice";
 
 const CreateAddressForm = ({ onNext, propertyId }) => {
@@ -15,6 +16,9 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
     zip_code: "",
     property_id: propertyId,
   });
+  const toastId = React.useRef(null);
+  const loading = useSelector((state) => state.properties.loading);
+  const error = useSelector((state) => state.properties.error);
 
   const dispatch = useDispatch();
 
@@ -28,10 +32,47 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
     dispatch(createAddress(address))
       .then(() => {
         onNext();
+        if (!loading && !error) {
+          toastId.current = toast.success(
+            "Create Address for property Successfully",
+            {
+              position: "top-right",
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: "light",
+            },
+          );
+        }
+        if (loading) {
+          toastId.current = toast.success("creating address ...", {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "light",
+          });
+        }
       })
       .catch((error) => {
-        console.log(error);
-        // Handle error if needed
+        if (error) {
+          toastId.current = toast.error(
+            "Creating Address is not Successfully",
+            {
+              position: "top-right",
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: "light",
+            },
+          );
+        }
       });
   };
 
