@@ -94,6 +94,7 @@ const authSlice = createSlice({
 });
 
 export const getUser = (state) => state.user.user;
+export const getAccessToken = (state) => state.user.accessToken;
 export const getUserStatus = (state) => state.user.loading;
 export const getUserError = (state) => state.user.error;
 export const { logout } = authSlice.actions;

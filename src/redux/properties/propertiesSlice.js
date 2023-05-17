@@ -40,3 +40,8 @@ const propertiesSlice = createSlice({
 // export const { actions: propertiesActions } = propertiesSlice;
 export default propertiesSlice.reducer;
 export const selectProperties = (state) => state.properties;
+
+export const selectPropertiesWithNamesAndIds = (state) => state.properties.data.map((property) => ({
+  id: property.id,
+  name: property.name,
+}));

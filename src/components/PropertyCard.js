@@ -15,7 +15,7 @@ export default function PropertyCard({ property }) {
         />
       </div>
       <Link
-        to={`detail/${property.id}`}
+        to={`details/${property.id}`}
         className="property-name fs-3 fw-bold text-dark text-decoration-none"
       >
         {property.name}

@@ -51,6 +51,18 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
             Home
           </NavLink>
         </li>
+        <li className="nav-item sidebar__nav-item">
+          <NavLink
+            className={({ isActive }) => (isActive
+              ? 'nav-link sidebar__nav-link sidebar__nav-active'
+              : 'nav-link sidebar__nav-link')}
+            to="/reservations/new"
+            exact
+            onClick={hideSidebar}
+          >
+            Add Reservation
+          </NavLink>
+        </li>
       </ul>
 
       <div className="sidebar__bottom d-flex flex-column">

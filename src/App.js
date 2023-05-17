@@ -10,6 +10,7 @@ import Details from './pages/Details';
 import DefaultLayout from './layouts/DefaultLayout';
 import Layout from './layouts/Layout';
 import HomePage from './pages/HomePage';
+import AddReservation from './pages/AddReservation';
 
 const App = () => (
   <>
@@ -34,10 +35,18 @@ const App = () => (
         />
       </Route>
       <Route element={<DefaultLayout />}>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          index
+          element={<HomePage />}
+        />
         <Route
           path="/details/:id/"
           element={<Details />}
+        />
+        <Route
+          path="reservations/new"
+          element={<AddReservation />}
         />
       </Route>
     </Routes>

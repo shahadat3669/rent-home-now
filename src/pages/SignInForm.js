@@ -13,8 +13,8 @@ const Login = () => {
   const navigate = useNavigate();
   const toastId = React.useRef(null);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('shahadat3669@gmail.com');
-  const [password, setPassword] = useState('password');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const userStatus = useSelector(getUserStatus);
   const userError = useSelector(getUserError);
   const userData = useSelector(getUser);
