@@ -31,7 +31,6 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('Dispatching fetchCategories action');
     dispatch(fetchCategories());
   }, [dispatch]);
 
@@ -133,7 +132,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const hasErrors = Object.values(errors).some((error) => error !== null);
 
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column m-2">
       <h2 className="d-flex justify-content-center">Create Property</h2>
       <div className="d-flex mx-auto">
         <form onSubmit={handleSubmit} className="fluid-container">
@@ -162,7 +161,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
           </div>
           <div className="row g-3">
             <div className="col-md-4">
-              <label htmlFor="no_bedrooms" className="form-label">
+              <label htmlFor="no_bedrooms" className="form-label w-100">
                 No. of Bedrooms
                 <input
                   placeholder="No. of Bedrooms"
@@ -177,7 +176,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
               </label>
             </div>
             <div className="col-md-4">
-              <label htmlFor="no_baths" className="form-label">
+              <label htmlFor="no_baths" className="form-label w-100">
                 No. of Baths
                 <input
                   placeholder="No. of Baths"
@@ -192,7 +191,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
               </label>
             </div>
             <div className="col-md-4">
-              <label htmlFor="no_beds" className="form-label">
+              <label htmlFor="no_beds" className="form-label w-100">
                 No. of Beds
                 <input
                   placeholder="No. of Beds"
@@ -208,7 +207,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="area" className="form-label">
+            <label htmlFor="area" className="form-label w-100">
               Area (in sq. ft.)
               <input
                 type="number"
@@ -239,7 +238,8 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
           </div>
           {error && <div className="text-danger mt-2">{error}</div>}
           <div className="mb-3">
-            <span>Images</span>
+            <span className="m-2 ">Images</span>
+            <br />
             {property.images.map((image, index) => {
               const key = `image_${index}`; // Assign a fixed unique key for each input element
 
@@ -282,7 +282,7 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
             </div>
           )}
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary px-2">
             {loading ? 'Creating...' : 'Create'}
           </button>
         </form>

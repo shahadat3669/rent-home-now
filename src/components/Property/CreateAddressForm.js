@@ -75,7 +75,7 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
   };
 
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column m-2">
       <h2 className="d-flex justify-content-center">Create Address</h2>
       <div className="d-flex mx-auto">
         <form onSubmit={handleSubmit}>
