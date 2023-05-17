@@ -13,8 +13,12 @@ import {
 
 import { RxCross1 } from 'react-icons/rx';
 import { Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { getUser } from '../../redux/user/userSlice';
 
 const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
+  const user = useSelector(getUser);
+  console.log(user);
   const hideSidebar = () => {
     if (isActive) {
       handleHamburgerBtnClick();
@@ -50,17 +54,53 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
           >
             Home
           </NavLink>
+          {user?.name && (
+            <>
+              <NavLink
+                className={({ isActive }) => (isActive
+                  ? 'nav-link sidebar__nav-link sidebar__nav-active'
+                  : 'nav-link sidebar__nav-link')}
+                to="/my-reservations"
+                exact
+                onClick={hideSidebar}
+              >
+                My reservations
+              </NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive
+                  ? 'nav-link sidebar__nav-link sidebar__nav-active'
+                  : 'nav-link sidebar__nav-link')}
+                to="/my-property"
+                exact
+                onClick={hideSidebar}
+              >
+                My Properties
+              </NavLink>
+            </>
+          )}
         </li>
         <li className="nav-item sidebar__nav-item">
           <NavLink
             className={({ isActive }) => (isActive
               ? 'nav-link sidebar__nav-link sidebar__nav-active'
               : 'nav-link sidebar__nav-link')}
-            to="/my-property"
+            to="/reservations/new"
             exact
             onClick={hideSidebar}
           >
-            My Property
+            Add Reservation
+          </NavLink>
+        </li>
+        <li className="nav-item sidebar__nav-item">
+          <NavLink
+            className={({ isActive }) => (isActive
+              ? 'nav-link sidebar__nav-link sidebar__nav-active'
+              : 'nav-link sidebar__nav-link')}
+            to="/new-property"
+            exact
+            onClick={hideSidebar}
+          >
+            New Property
           </NavLink>
         </li>
       </ul>

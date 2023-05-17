@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
 
-import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   createProperty,
   fetchCategories,
 } from '../../redux/properties/propertiesSlice';
+import { getAccessToken } from '../../redux/user/userSlice';
 
 const CreatePropertyForm = ({ onNext, setPropertyId }) => {
   const categories = useSelector((state) => state.properties.categories);
   const loading = useSelector((state) => state.properties.loading);
   const error = useSelector((state) => state.properties.error);
   const [errors, setErrors] = useState({});
+  const userAccessToken = useSelector(getAccessToken);
   const toastId = React.useRef(null);
 
   const [property, setProperty] = useState({
@@ -23,7 +25,6 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
     no_baths: 0,
     no_beds: 0,
     area: 0,
-    user_id: 1,
     images: [],
   });
 
@@ -60,12 +61,12 @@ const CreatePropertyForm = ({ onNext, setPropertyId }) => {
     if (Object.keys(imageErrors).length > 0) {
       setErrors((prevState) => ({ ...prevState, ...imageErrors }));
     } else {
-      dispatch(createProperty(property))
+      dispatch(createProperty({ userAccessToken, property }))
         .then((response) => {
           const { payload } = response;
-          onNext();
           setPropertyId(payload.id);
           if (!loading && !error) {
+            onNext();
             toastId.current = toast.success('Create property Successfully', {
               position: 'top-right',
               autoClose: 4000,

@@ -1,70 +1,209 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <img src="./app/assets/images/logo.png" alt="logo" width="140"  height="auto" />
+  <h1><b>Rent Home Now</b></h1>
+</div>
 
-## Available Scripts
+# 📗 Table of Contents
 
-In the project directory, you can run:
+- [📗 Table of Contents](#-table-of-contents)
+- [🎯 Rent Home Now API](#-rent-home-now-api)
+  - [🛠 Frontend repository: ](#-frontend-repository-)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Clone Repository](#clone-repository)
+    - [Add necessary packages](#add-necessary-packages)
+    - [Run the server in development mode](#run-the-server-in-development-mode)
+  - [👥 Authors ](#-authors-)
+    - [First Author:](#first-author)
+    - [Second Author:](#second-author)
+    - [Third Author:](#third-author)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [👋 Show your support ](#-show-your-support-)
+  - [🔭Acknowledgments ](#acknowledgments-)
+  - [❓ FAQ ](#-faq-)
+  - [📝 License ](#-license-)
 
-### `npm start`
+<!-- PROJECT DESCRIPTION -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 🎯 Rent Home Now API<a name="about-project"></a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Rent Home Now is the front-end final capstone project for the Full Stack Developer Program at Microverse.
 
-### `npm test`
+Rent Home Now is a website that facilitates the connection between property owners interested in renting out their properties and potential renters. This site allows for the creation of reservations on selected properties. It has been developed using the Redux framework and uses an own API that you can visit by clicking on [here](https://github.com/shahadat3669/rent-home-now-api).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app was built with a Ruby on Rails backend and a React/Redux frontend, located on separate repositories.
 
-### `npm run build`
+## 🛠 Frontend repository: <a name="frontend"></a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To visit the frontend repository, please [click here](https://github.com/shahadat3669/rent-home-now-api).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠 Built With <a name="built-with"></a>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Tech Stack <a name="tech-stack"></a>
 
-### `npm run eject`
+<details>
+  <summary>Technology</summary>
+  <ul>
+    <li>React</li>
+    <li>Redux</li>
+    <li>Bootstrap</li>
+  </ul>
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<details>
+  <summary>Tools</summary>
+  <ul>
+    <li>VS Code</li>
+    <li>GIT</li>
+    <li>GITHUB</li>
+  </ul>
+</details>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- Features -->
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Key Features <a name="key-features"></a>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Main functionalities which the app will have:
 
-## Learn More
+- **User registration:** Allow new users to register an account with the API by providing their personal information and creating a username and password.
+- **Property listing:** Allow property owners to list their properties with the API by providing information such as property type, location, price, and availability.
+- **Reservation creation:** Allow renters to create reservations for selected properties by providing the desired dates of the reservation and the number of occupants.
+- **Reservation management:** Allow both property owners and renters to view, edit, and cancel existing reservations.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- GETTING STARTED -->
 
-### Code Splitting
+## 💻 Getting Started <a name="getting-started"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To get a local copy up and running follow these simple example steps.
 
-### Analyzing the Bundle Size
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+you should have those tools in your local machine.
 
-### Making a Progressive Web App
+- [ ] Node
+- [ ] GIT & GITHUB
+- [ ] Any Code Editor (VS Code, Brackets, etc)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Clone Repository
 
-### Advanced Configuration
+Clone the repository using the following bash command in an appropriate location.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+  git clone git@github.com:shahadat3669/rent-home-now.git
+```
 
-### Deployment
+Go to the project directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+  cd rent-home-now
+```
 
-### `npm run build` fails to minify
+### Add necessary packages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For installing the necessary packages, run the following bash command:
+
+```bash
+  npm install
+```
+### Run the server in development mode
+
+In the project directory, you can run the project by using the following bash command:
+
+```bash
+  npm start
+```
+
+And now you can visit the site with the URL http://localhost:3000
+
+<!-- ### Run the test
+
+Before running the test command, please make sure you have run `rails db:seed`.
+
+For testing you can run following bash command:
+
+```bash
+  bundle exec rspec
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
+<!-- AUTHORS -->
+
+## 👥 Authors <a name="authors"></a>
+
+### First Author:
+
+**Shahadat Hossain**
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/shahadat3669) [![linkedin](https://img.shields.io/badge/shahadat3669-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/shahadat3669) [![twitter](https://img.shields.io/badge/@shahadat3669-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/shahadat3669)
+
+### Second Author:
+
+**Sandro Hernandez**
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://sambeck87.github.io/setup_and_mobile_first) [![linkedin](https://img.shields.io/badge/sandro_israel_hernández_zamora-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/sandro-israel-hernández-zamora-899386a4) [![twitter](https://img.shields.io/badge/@sambeck4488-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/sambeck4488)
+
+### Third Author:
+
+**Sandro Hernandez**
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://gutemag.github.io/) [![linkedin](https://img.shields.io/badge/Birhanu_Gudisa-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/birhanugudisa-899386a4) [![twitter](https://img.shields.io/badge/@birhanugudisa3-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/birhanugudisa3)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **Payment integration:** Allow renters to pay for their reservations through the API using a secure payment gateway.
+
+- [ ] **Rating and review system:** Allow renters to rate and review properties they have rented through the API, and allow property owners to view and respond to these reviews.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../../issues/).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- SUPPORT -->
+
+## 👋 Show your support <a name="support"></a>
+
+Give a ⭐️ if you like this project!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🔭Acknowledgments <a name="acknowledgements"></a>
+
+- My Family.
+- [Microverse](microverse.org)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FAQ (optional) -->
+
+## ❓ FAQ <a name="faq"></a>
+
+- **Can I use this project for personal use?**
+
+  - Yes, you can use it.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
