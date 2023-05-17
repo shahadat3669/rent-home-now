@@ -10,11 +10,12 @@ import {
   getPropertiesByUser,
 } from "../redux/properties/propertiesSlice";
 import ModalComponent from "../components/ModalComponent";
-import { getUser } from '../redux/user/userSlice';
+import { getAccessToken, getUser } from '../redux/user/userSlice';
 
 export default function MyProperty() {
   const dispatch = useDispatch();
   const properties = useSelector((state) => state.properties);
+  const userAccessToken = useSelector(getAccessToken);
   const user = useSelector(getUser);
 
   const filteredProperties = properties.data.filter((property) => property.user_id === user.id);
@@ -30,9 +31,10 @@ export default function MyProperty() {
   };
 
   const handleConfirmDelete = () => {
-    dispatch(deleteProperty(selectedProperty.id))
+    dispatch(deleteProperty({ userAccessToken, propertyId: selectedProperty.id }))
       .then(() => {
         setSelectedProperty(null);
+        dispatch(getPropertiesByUser(user.id));
       })
       .catch((error) => {
         console.error(error);
@@ -41,14 +43,7 @@ export default function MyProperty() {
   const [showEditModal, setShowEditModal] = useState(false);
 
   return (
-    <div className="d-flex flex-column border">
-      <div className="d-flex py-2 mx-2 gap-3">
-        <Link to="/new-property">
-          <button type="button" className="btn btn-primary p-2">
-            New Property
-          </button>
-        </Link>
-      </div>
+    <div className="d-flex flex-column m-3">
       <div className="card-deck d-flex flex-wrap">
         {filteredProperties.map((property) => (
           <div className="col card-deck mx-auto" key={property.id}>

@@ -70,11 +70,15 @@ export const getPropertiesByUser = createAsyncThunk(
 
 export const deleteProperty = createAsyncThunk(
   'rent-home-now/DELETE_PROPERTY',
-  async (propertyId) => {
+  async (propertyData) => {
     const response = await fetch(
-      `http://127.0.0.1:4000/api/v1/properties/${propertyId}`,
+      `http://127.0.0.1:4000/api/v1/properties/${propertyData.propertyId}`,
       {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: propertyData.userAccessToken,
+        },
       },
     );
 
