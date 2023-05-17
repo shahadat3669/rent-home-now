@@ -101,7 +101,7 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="row g-3">
+          <div className="row g-3 mb-2">
             <div className="col-md-6">
               <input
                 placeholder="City"
