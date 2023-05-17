@@ -4,6 +4,7 @@ import userReducer from './user/userSlice';
 import details from './details/GetDetails';
 // import properties from './properties/GetProperties';
 import propertiesReducer from './properties/propertiesSlice';
+import reservationReducer from './reservation/reservationSlice';
 
 const store = configureStore(
   {
@@ -11,6 +12,7 @@ const store = configureStore(
       user: userReducer,
       details,
       properties: propertiesReducer,
+      reservations: reservationReducer,
     },
   },
   applyMiddleware(thunk),
