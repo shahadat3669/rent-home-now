@@ -75,31 +75,28 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
   };
 
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column m-2">
       <h2 className="d-flex justify-content-center">
         Create Reservation Criteria
       </h2>
       <div className="d-flex mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="category_id" className="form-label">
-              Category
-              <select
-                className="form-select"
-                id="time_period"
-                name="time_period"
-                value={reservationCriteria.time_period}
-                onChange={handleChange}
-              >
-                <option value="">Select a Time Period</option>
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </label>
+            <select
+              className="form-select"
+              id="time_period"
+              name="time_period"
+              value={reservationCriteria.time_period}
+              onChange={handleChange}
+            >
+              <option value="">Select a Time Period</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
           </div>
           <div className="mb-3">
-            <label htmlFor="others_fee" className="form-label">
+            <label htmlFor="others_fee" className="form-label w-100">
               Others Fee
               <input
                 type="number"
@@ -115,7 +112,7 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
           </div>
           <div className="row g-3">
             <div className="col-md-6">
-              <label htmlFor="min_time_period" className="form-label">
+              <label htmlFor="min_time_period" className="form-label w-100">
                 Minimum Time Period
                 <input
                   type="number"
@@ -129,7 +126,7 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
               </label>
             </div>
             <div className="col-md-6">
-              <label htmlFor="max_guest" className="form-label">
+              <label htmlFor="max_guest" className="form-label w-100">
                 Maximum Guest
                 <input
                   type="number"
@@ -145,7 +142,7 @@ const CreateReservationCriteriaForm = ({ onComplete, propertyId }) => {
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="rate" className="form-label">
+            <label htmlFor="rate" className="form-label w-100">
               Rate
               <input
                 type="number"
