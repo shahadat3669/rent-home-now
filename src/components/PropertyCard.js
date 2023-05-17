@@ -8,14 +8,16 @@ export default function PropertyCard({ property }) {
   return (
     <div className="property-card">
       <div className="property-image-back">
-        <img
-          src={property.images[0].source}
-          alt={property.name}
-          className="property-image"
-        />
+        {property.images.length > 0 && (
+          <img
+            src={property.images[0].source}
+            alt={property.name}
+            className="property-image"
+          />
+        )}
       </div>
       <Link
-        to={`detail/${property.id}`}
+        to={`details/${property.id}`}
         className="property-name fs-3 fw-bold text-dark text-decoration-none"
       >
         {property.name}
