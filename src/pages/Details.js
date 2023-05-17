@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaBed, FaBath } from 'react-icons/fa';
 import { MdMeetingRoom } from 'react-icons/md';
 import { FiArrowRightCircle } from 'react-icons/fi';
@@ -8,11 +8,18 @@ import { getDetails, fullDetails } from '../redux/details/GetDetails';
 import '../styles/LoadingSpinner.css';
 
 const Details = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
   const dispatch = useDispatch();
   // const [isLoading, setIsLoading] = useState(true);
-
+  const handleNavigate = () => {
+    navigate('/reservations/new', {
+      state: {
+        property_id: id,
+      },
+    });
+  };
   useEffect(() => {
     dispatch(getDetails(id));
   }, [dispatch, id]);
@@ -142,11 +149,10 @@ const Details = () => {
           </table>
           <br />
           {userKey ? (
-            <a id="reserve_btn" className="btn primary_bg text-white lg_button no_hover d-flex justify-content-evenly" href="http://facebook.com">
-              Reserve
-              &nbsp;
+            <button id="reserve_btn" className="btn primary_bg text-white lg_button no_hover d-flex justify-content-evenly" type="button" onClick={handleNavigate}>
+              Reserve&nbsp;
               <FiArrowRightCircle className="my-auto" />
-            </a>
+            </button>
           ) : (
             <p>
               You are not signed in.
