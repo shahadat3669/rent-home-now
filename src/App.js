@@ -13,10 +13,10 @@ import Layout from './layouts/Layout';
 import HomePage from './pages/HomePage';
 import AddReservation from './pages/AddReservation';
 import NewProperty from './pages/NewProperty';
-import MyProperty from './pages/MyProperty';
 import MyReservations from './pages/MyReservations';
 import { getAccessToken, userReservations } from './redux/user/userSlice';
 import { fetchProperties, selectProperties } from './redux/properties/propertiesSlice';
+import MyProperty from './pages/MyProperty';
 
 const App = () => {
   const dispatch = useDispatch();

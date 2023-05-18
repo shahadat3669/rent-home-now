@@ -35,7 +35,13 @@ export default function PropertyCard({ property }) {
           {property.reservation_criteria.rate
           + property.reservation_criteria.others_fee}
         </h5>
-        <h5 title={`State: ${property.address.state}, zip_code: ${property.address.zip_code}`}>{property.address.country}</h5>
+        {property.address && (
+          <>
+            <h5 title={`State: ${property.address.state}, zip_code: ${property.address.zip_code}`}>
+              {property.address.country}
+            </h5>
+          </>
+        )}
       </div>
       <div className="property-social text-muted">
         <span className="property-social-icon">
