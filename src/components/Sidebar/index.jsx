@@ -54,8 +54,10 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
           >
             Home
           </NavLink>
-          {user?.name && (
-            <>
+        </li>
+        {user?.name && (
+          <>
+            <li className="nav-item sidebar__nav-item">
               <NavLink
                 className={({ isActive }) => (isActive
                   ? 'nav-link sidebar__nav-link sidebar__nav-active'
@@ -66,6 +68,8 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
               >
                 My reservations
               </NavLink>
+            </li>
+            <li className="nav-item sidebar__nav-item">
               <NavLink
                 className={({ isActive }) => (isActive
                   ? 'nav-link sidebar__nav-link sidebar__nav-active'
@@ -76,21 +80,34 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
               >
                 My Properties
               </NavLink>
-            </>
-          )}
-        </li>
-        <li className="nav-item sidebar__nav-item">
-          <NavLink
-            className={({ isActive }) => (isActive
-              ? 'nav-link sidebar__nav-link sidebar__nav-active'
-              : 'nav-link sidebar__nav-link')}
-            to="/reservations/new"
-            exact
-            onClick={hideSidebar}
-          >
-            Add Reservation
-          </NavLink>
-        </li>
+            </li>
+            <li className="nav-item sidebar__nav-item">
+              <NavLink
+                className={({ isActive }) => (isActive
+                  ? 'nav-link sidebar__nav-link sidebar__nav-active'
+                  : 'nav-link sidebar__nav-link')}
+                to="/new-property"
+                exact
+                onClick={hideSidebar}
+              >
+                New Property
+              </NavLink>
+            </li>
+            <li className="nav-item sidebar__nav-item">
+              <NavLink
+                className={({ isActive }) => (isActive
+                  ? 'nav-link sidebar__nav-link sidebar__nav-active'
+                  : 'nav-link sidebar__nav-link')}
+                to="/reservations/new"
+                exact
+                onClick={hideSidebar}
+              >
+                Add Reservation
+              </NavLink>
+            </li>
+          </>
+        )}
+
       </ul>
 
       <div className="sidebar__bottom d-flex flex-column">

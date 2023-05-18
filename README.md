@@ -1,14 +1,14 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="./app/assets/images/logo.png" alt="logo" width="140"  height="auto" />
+  <img src="https://i.ibb.co/0y72cpt/image.png" alt="logo" width="140"  height="auto" />
   <h1><b>Rent Home Now</b></h1>
 </div>
 
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [🎯 Rent Home Now API](#-rent-home-now-api)
+- [🎯 Rent Home Now](#-rent-home-now)
   - [🛠 Frontend repository: ](#-frontend-repository-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
@@ -31,7 +31,10 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 🎯 Rent Home Now API<a name="about-project"></a>
+# 🎯 Rent Home Now<a name="about-project"></a>
+<p align="center">
+  <img src="https://i.ibb.co/T2LQGpx/Captura-desde-2023-05-18-10-12-48.png" alt="example_page" width="100%"  height="auto">
+</p>
 
 Rent Home Now is the front-end final capstone project for the Full Stack Developer Program at Microverse.
 

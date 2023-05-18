@@ -73,6 +73,23 @@
   color: #fff;
 }
 
+.progress_bar {
+  background-color: aliceblue;
+  height: 10px;
+  border: solid 1px black;
+  width: 30%;
+  border-radius: 5px;
+}
+
+.current_progress {
+  background-color: #97bf0f;
+  height: 10px;
+}
+
+.fit_content {
+  width: fit-content;
+}
+
 @media screen and (min-width: 768px) {
   .btnPrev {
     padding: 1rem 1.3rem;

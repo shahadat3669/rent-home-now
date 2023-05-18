@@ -46,7 +46,7 @@ const SignUp = () => {
   return (
     <div className="max_width d-flex flex-column back_bg vh-100">
       <div className="max_width d-flex flex-column justify-content-center top_width align-self-center mt-5">
-        <img className="logo align-self-center" src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg" alt="" />
+        <img className="logo align-self-center" src="https://i.ibb.co/0y72cpt/image.png" alt="Logo" />
         <h2 className="text-center my-5">Sign up to your account</h2>
         <div className="bg-white rounded-4 auth_form">
           <form className="my-3" onSubmit={handleSubmit}>

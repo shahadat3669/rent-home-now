@@ -1,20 +1,22 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable quotes */
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { createAddress } from "../../redux/address/addressSlice";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { createAddress } from '../../redux/address/addressSlice';
 
 const CreateAddressForm = ({ onNext, propertyId }) => {
   const [address, setAddress] = useState({
-    house_number: "",
-    street: "",
-    city: "",
-    state: "",
-    country: "",
-    zip_code: "",
+    house_number: '',
+    street: '',
+    city: '',
+    state: '',
+    country: '',
+    zip_code: '',
     property_id: propertyId,
   });
+  const toastId = React.useRef(null);
+  const loading = useSelector((state) => state.properties.loading);
+  const error = useSelector((state) => state.properties.error);
 
   const dispatch = useDispatch();
 
@@ -28,23 +30,58 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
     dispatch(createAddress(address))
       .then(() => {
         onNext();
+        if (!loading && !error) {
+          toastId.current = toast.success(
+            'Create Address for property Successfully',
+            {
+              position: 'top-right',
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'light',
+            },
+          );
+        }
+        if (loading) {
+          toastId.current = toast.success('creating address ...', {
+            position: 'top-right',
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: 'light',
+          });
+        }
       })
       .catch((error) => {
-        console.log(error);
-        // Handle error if needed
+        if (error) {
+          toastId.current = toast.error(
+            'Creating Address is not Successfully',
+            {
+              position: 'top-right',
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'light',
+            },
+          );
+        }
       });
   };
 
   return (
-    <div className="d-flex flex-column">
+    <div className="d-flex flex-column m-2">
       <h2 className="d-flex justify-content-center">Create Address</h2>
       <div className="d-flex mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="house_number" className="form-label">
-              House Number
-            </label>
             <input
+              placeholder="House Number"
               type="text"
               className="form-control"
               id="house_number"
@@ -54,10 +91,8 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="street" className="form-label">
-              Street
-            </label>
             <input
+              placeholder="Street"
               type="text"
               className="form-control"
               id="street"
@@ -66,12 +101,10 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="row g-3">
+          <div className="row g-3 mb-2">
             <div className="col-md-6">
-              <label htmlFor="city" className="form-label">
-                City
-              </label>
               <input
+                placeholder="City"
                 type="text"
                 className="form-control"
                 id="city"
@@ -81,10 +114,8 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="state" className="form-label">
-                State
-              </label>
               <input
+                placeholder="State"
                 type="text"
                 className="form-control"
                 id="state"
@@ -96,10 +127,8 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
           </div>
           <div className="row g-3">
             <div className="col-md-6">
-              <label htmlFor="country" className="form-label">
-                Country
-              </label>
               <input
+                placeholder="Country"
                 type="text"
                 className="form-control"
                 id="country"
@@ -109,10 +138,8 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="zip_code" className="form-label">
-                ZIP Code
-              </label>
               <input
+                placeholder="ZIP Code"
                 type="text"
                 className="form-control"
                 id="zip_code"
@@ -122,7 +149,7 @@ const CreateAddressForm = ({ onNext, propertyId }) => {
               />
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary m-2">
             Create Address
           </button>
         </form>
