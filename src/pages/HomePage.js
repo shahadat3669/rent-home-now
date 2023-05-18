@@ -7,7 +7,7 @@ import './style/HomePage.css';
 import 'swiper/css';
 import PropertyCard from '../components/PropertyCard';
 
-export default function HomePage() {
+const HomePage = () => {
   const properties = useSelector(selectProperties);
   const swiperRef = useRef(null);
 
@@ -75,4 +75,5 @@ export default function HomePage() {
       )}
     </div>
   );
-}
+};
+export default HomePage;

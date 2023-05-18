@@ -4,7 +4,7 @@ import { getUserReservations } from '../redux/user/userSlice';
 import { selectProperties } from '../redux/properties/propertiesSlice';
 import '../styles/userPages.css';
 
-function MyReservations() {
+const MyReservations = () => {
   const properties = useSelector(selectProperties);
   const reservations = useSelector(getUserReservations);
 
@@ -70,6 +70,5 @@ function MyReservations() {
       <div className="loading-spinner" />
     </div>
   );
-}
-
+};
 export default MyReservations;

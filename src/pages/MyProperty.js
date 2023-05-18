@@ -1,24 +1,23 @@
-/* eslint-disable quotes */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { Button, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import {
   deleteProperty,
   getPropertiesByUser,
-} from "../redux/properties/propertiesSlice";
-import ModalComponent from "../components/ModalComponent";
+} from '../redux/properties/propertiesSlice';
+import ModalComponent from '../components/ModalComponent';
 import { getAccessToken, getUser } from '../redux/user/userSlice';
 
-export default function MyProperty() {
+const MyProperty = () => {
   const dispatch = useDispatch();
   const properties = useSelector((state) => state.properties);
   const userAccessToken = useSelector(getAccessToken);
   const user = useSelector(getUser);
 
-  const filteredProperties = properties.data.filter((property) => property.user_id === user.id);
+  const filteredProperties = properties.data.filter(
+    (property) => property.user_id === user.id,
+  );
 
   useEffect(() => {
     const userId = user.id;
@@ -31,14 +30,14 @@ export default function MyProperty() {
   };
 
   const handleConfirmDelete = () => {
-    dispatch(deleteProperty({ userAccessToken, propertyId: selectedProperty.id }))
+    dispatch(
+      deleteProperty({ userAccessToken, propertyId: selectedProperty.id }),
+    )
       .then(() => {
         setSelectedProperty(null);
         dispatch(getPropertiesByUser(user.id));
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(() => {});
   };
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -47,7 +46,7 @@ export default function MyProperty() {
       <div className="card-deck d-flex flex-wrap">
         {filteredProperties.map((property) => (
           <div className="col card-deck mx-auto" key={property.id}>
-            <div className="card mx-auto" style={{ width: "22rem" }}>
+            <div className="card mx-auto" style={{ width: '22rem' }}>
               {property.images.length > 0 && (
                 <img
                   src={property.images[0] ? property.images[0].source : []}
@@ -131,4 +130,5 @@ export default function MyProperty() {
       </div>
     </div>
   );
-}
+};
+export default MyProperty;

@@ -12,7 +12,6 @@ const Details = () => {
   const params = useParams();
   const { id } = params;
   const dispatch = useDispatch();
-  // const [isLoading, setIsLoading] = useState(true);
   const handleNavigate = () => {
     navigate('/reservations/new', {
       state: {

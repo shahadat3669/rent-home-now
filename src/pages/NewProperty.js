@@ -8,7 +8,6 @@ const NewProperty = () => {
   const [propertyId, setPropertyId] = useState(null);
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
-  // const FormTitles = ['Property', 'Address', 'Reservation Criteria'];
 
   const handleNext = () => {
     setStep(step + 1);
