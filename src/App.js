@@ -16,16 +16,26 @@ import NewProperty from './pages/NewProperty';
 import MyProperty from './pages/MyProperty';
 import MyReservations from './pages/MyReservations';
 import { getAccessToken, userReservations } from './redux/user/userSlice';
+import { fetchProperties, selectProperties } from './redux/properties/propertiesSlice';
 
 const App = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector(getAccessToken);
+  const properties = useSelector(selectProperties);
 
   useEffect(() => {
     if (accessToken !== '') {
       dispatch(userReservations(accessToken));
     }
   }, [accessToken, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchProperties());
+  }, [dispatch]);
+
+  if (!properties.data) {
+    return null;
+  }
 
   return (
     <>

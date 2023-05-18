@@ -1,27 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa';
-import {
-  fetchProperties,
-  selectProperties,
-} from '../redux/properties/propertiesSlice';
+import { selectProperties } from '../redux/properties/propertiesSlice';
 import './style/HomePage.css';
 import 'swiper/css';
 import PropertyCard from '../components/PropertyCard';
 
 export default function HomePage() {
-  const dispatch = useDispatch();
   const properties = useSelector(selectProperties);
-
-  useEffect(() => {
-    dispatch(fetchProperties());
-  }, [dispatch]);
   const swiperRef = useRef(null);
-
-  if (!properties.data) {
-    return null;
-  }
 
   const handleSwiper = (swiper) => {
     swiperRef.current = swiper;
