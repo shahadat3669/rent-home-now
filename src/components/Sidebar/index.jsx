@@ -86,11 +86,11 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
                 className={({ isActive }) => (isActive
                   ? 'nav-link sidebar__nav-link sidebar__nav-active'
                   : 'nav-link sidebar__nav-link')}
-                to="/reservations/new"
+                to="/new-property"
                 exact
                 onClick={hideSidebar}
               >
-                Add Reservation
+                New Property
               </NavLink>
             </li>
             <li className="nav-item sidebar__nav-item">
@@ -98,11 +98,11 @@ const Sidebar = ({ isActive, handleHamburgerBtnClick }) => {
                 className={({ isActive }) => (isActive
                   ? 'nav-link sidebar__nav-link sidebar__nav-active'
                   : 'nav-link sidebar__nav-link')}
-                to="/new-property"
+                to="/reservations/new"
                 exact
                 onClick={hideSidebar}
               >
-                New Property
+                Add Reservation
               </NavLink>
             </li>
           </>
