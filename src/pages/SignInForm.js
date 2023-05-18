@@ -63,8 +63,8 @@ const Login = () => {
       <div className="max_width d-flex flex-column justify-content-center top_width align-self-center mt-5">
         <img
           className="logo align-self-center"
-          src="https://thumbs.dreamstime.com/b/rent-icon-189435850.jpg"
-          alt=""
+          src="https://i.ibb.co/0y72cpt/image.png"
+          alt="Logo"
         />
         <h2 className="text-center my-5">Sign in to your account</h2>
         <div className="bg-white rounded-4 auth_form">
